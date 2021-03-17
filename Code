@@ -1,0 +1,31 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import datetime
+import mplfinance as fplt
+
+sns.set_style('dark')
+
+STOCK_NAME = 'AAPL'
+
+df_apple = pd.read_csv(f'data_files/Stocks/{STOCK_NAME.lower()}.us.txt', index_col=0)
+df_apple.index = pd.to_datetime(df_apple.index
+
+df_apple.info()
+<class 'pandas.core.frame.DataFrame'>
+DatetimeIndex: 8364 entries, 1984-09-07 to 2017-11-10
+Data columns (total 6 columns):
+ #   Column   Non-Null Count  Dtype  
+---  ------   --------------  -----  
+ 0   Open     8364 non-null   float64
+ 1   High     8364 non-null   float64
+ 2   Low      8364 non-null   float64
+ 3   Close    8364 non-null   float64
+ 4   Volume   8364 non-null   int64  
+ 5   OpenInt  8364 non-null   int64  
+dtypes: float64(4), int64(2)
+memory usage: 457.4 KB
+
+plt.figure(figsize=(14,10))
+sns.lineplot(data=df_apple.drop(columns=['Volume', 'OpenInt']), palette='tab10', linewidth=2.5)
